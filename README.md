@@ -1,2 +1,4 @@
 # Web-scraping
- UOC - Tipologia i cocle de vida de les dades - PRAC1
+ UOC - Tipologia i cicle de vida de les dades - PRAC1
+# Membres
+Gabriel i Mireia 
