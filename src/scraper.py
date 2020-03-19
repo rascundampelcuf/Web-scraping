@@ -12,3 +12,11 @@ class Scraper():
             html = requests.get(url)
             soup = BeautifulSoup(html.content, 'html.parser')
             return soup
+    
+      def scrape(self):
+            page = self.__download_html(self.url)
+            
+            print(page.prettify())
+            
+
+Scraper().scrape()
