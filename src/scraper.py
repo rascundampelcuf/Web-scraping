@@ -38,12 +38,21 @@ class Scraper():
         except Exception:
             rating = 'None'
         book.set_rate(rating)
+    
+    def __get_books(self, page):
+        divs = page.findAll('div', 'product__info')
+        books = []
+        for div in divs:            
+            book = Book()
+            self.__get_title_from_book(book, div)
+            self.__get_rating_from_book(book, div)
+            books.append(book)
         return books
     
     def scrape(self):
         page = self.__download_html(self.url)
-        titles = self.__get_titles(page)
-        
+        # titles = self.__get_titles(page)
+        titles = self.__get_books(page)
         for book in titles:
             print(book)
         # print(page.prettify())
