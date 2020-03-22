@@ -7,8 +7,6 @@ class Book(object):
         self.rate = ''        
         self.bookType = ''
         self.price = ''
-        # self.category = ''
-        # self.link = ''
     
     def __str__(self):
         return 'Book({}, {})'.format(self.title, self.author)
@@ -43,15 +41,4 @@ class Book(object):
     def set_price(self, value):
         self.price = value
         
-    # def get_category(self):
-    #     return self.category
     
-    # def set_category(self, value):
-    #     self.category = value    
-    
-    # def get_link(self):
-    #     return self.link
-    
-    # def set_link(self, value):
-    #     self.link = value
-        
