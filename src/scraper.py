@@ -29,6 +29,15 @@ class Scraper():
     def __get_title_from_book(self, book, text):
         title = text.findAll('a', 'title')[0].string
         book.set_title(title)
+        
+    def __get_rating_from_book(self, book, text):
+        rating = text.findAll('div', 'rating')
+        [s.extract() for s in rating[0]('svg')]
+        try:
+            rating = rating[0].string.strip()
+        except Exception:
+            rating = 'None'
+        book.set_rate(rating)
         return books
     
     def scrape(self):
