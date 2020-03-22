@@ -26,6 +26,9 @@ class Scraper():
             except Exception:
                 pass
             
+    def __get_title_from_book(self, book, text):
+        title = text.findAll('a', 'title')[0].string
+        book.set_title(title)
         return books
     
     def scrape(self):
