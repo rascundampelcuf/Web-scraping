@@ -14,18 +14,6 @@ class Scraper():
         soup = BeautifulSoup(html.content, 'html.parser')
         return soup
     
-    def __get_titles(self, page):
-        books = []
-        divs = page.findAll('div')
-        for div in divs:
-            book = Book()
-            try:
-                if div['class'] == ['product__info']:
-                    book.set_title(div.a.string.strip())
-                    books.append(book)
-            except Exception:
-                pass
-            
     def __get_title_from_book(self, book, text):
         title = text.find('a', 'title').string
         book.set_title(title)
