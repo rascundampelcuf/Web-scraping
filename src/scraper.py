@@ -8,6 +8,7 @@ class Scraper():
       
     def __init__(self):
         self.url = 'https://www.casadellibro.com/libros/literatura/121000000'
+        self.books = []
           
     def __download_html(self, url):
         # Get data from url
@@ -38,14 +39,12 @@ class Scraper():
     def __get_books(self, page):
         # Get books code from 'product__info' tag
         divs = page.findAll('div', 'product__info')
-        books = []
         for div in divs:            
             book = Book()
             self.__get_title_from_book(book, div)
             self.__get_authors_from_book(book, div)
             self.__get_rating_from_book(book, div)
-            books.append(book)
-        return books
+            self.books.append(book)
     
     def scrape(self):
         page = self.__download_html(self.url)
