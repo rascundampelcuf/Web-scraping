@@ -20,6 +20,7 @@ class Scraper():
     def __get_title_from_book(self, book, text):
         # Get title from 'title' tag
         title = text.find('a', 'title').string
+        title = text.find('a', 'title').string.strip()
         book.set_title(title)
     
     def __get_authors_from_book(self, book, text):
