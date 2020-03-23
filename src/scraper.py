@@ -27,14 +27,14 @@ class Scraper():
                 pass
             
     def __get_title_from_book(self, book, text):
-        title = text.findAll('a', 'title')[0].string
+        title = text.find('a', 'title').string
         book.set_title(title)
         
     def __get_rating_from_book(self, book, text):
-        rating = text.findAll('div', 'rating')
-        [s.extract() for s in rating[0]('svg')]
+        rating = text.find('div', 'rating')
+        [s.extract() for s in rating('svg')]
         try:
-            rating = rating[0].string.strip()
+            rating = rating.string.strip()
         except Exception:
             rating = 'None'
         book.set_rate(rating)
