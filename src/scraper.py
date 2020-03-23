@@ -1,5 +1,6 @@
 
 import requests
+import csv
 from bs4 import BeautifulSoup
 from book import Book
 
@@ -49,10 +50,23 @@ class Scraper():
     def scrape(self):
         page = self.__download_html(self.url)
         # titles = self.__get_titles(page)
-        titles = self.__get_books(page)
-        for book in titles:
-            print(book)
+        self.__get_books(page)
+        # for book in self.books:
+        #     print(book)
         # print(page.prettify())
             
-
-Scraper().scrape()
+    def data2csv(self, filename):
+        # # Overwrite to the specified file.
+        # # Create it if it does not exist.
+        csvwriter = csv.writer(open("../data/" + filename, "w", newline='\n'))
+        
+        # # Dump all the data with CSV format
+        csvwriter.writerow(['Title;Author;Rate;BookType;Price;Availability;'])
+        for book in self.books:
+            csvwriter.writerow([book.get_csv()])
+            
+            
+output_file = "data.csv"
+scraper = Scraper()
+scraper.scrape()
+scraper.data2csv(output_file)
