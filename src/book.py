@@ -49,4 +49,7 @@ class Book(object):
         return self.availability
     
     def set_availability(self, value):
-        self.availability = value    
+        self.availability = value
+        
+    def get_csv(self):
+        return '{};{};{};{};{};{};'.format(self.title, self.author, self.rate, self.bookType, self.price, self.availability)
