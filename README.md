@@ -6,7 +6,7 @@
 ## Descripció
 This project has been completed during the PRAC1 of the subject Typology and life cycle of the data of the master's degree in Data Science of the *Universitat Oberta de Catalunya* (UOC).
 
-The objective of this internship was to complete a Web Scraping in Python of the website "La Casa del Libro". From this website a list of all the books on the subject of "Literature" has been extended and a data set with the extended data has been generated.
+The objective of this PRAC was to complete a Web Scraping in Python of the website *"[Casa del Libro](https://www.https://www.casadellibro.com/)"*. From this website a list of all the books on the subject of "Literature" has been extended and a data set with the extended data has been generated.
 
 ---
 
@@ -27,7 +27,7 @@ The objective of this internship was to complete a Web Scraping in Python of the
 - **data/data.csv**: Output dataset. It contains a list of books.
 - **src/book.py**: It contains the implementation of Book class. It was created to easily manage the information of each book.
 - **src/main.py**: Input. It starts the scraping process.
-- **src/scraper.py**: It contains the implementation of Scraper class. Scraper class contains the necessary methods to generate the dataset with the data provided by "La Casa del Libro".
+- **src/scraper.py**: It contains the implementation of Scraper class. Scraper class contains the necessary methods to generate the dataset with the data provided by *"Casa del Libro"*.
 
 ## Installation
 
