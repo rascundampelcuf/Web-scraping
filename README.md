@@ -6,7 +6,7 @@
 ## Descripció
 This project has been completed during the PRAC1 of the subject Typology and life cycle of the data of the master's degree in Data Science of the *Universitat Oberta de Catalunya* (UOC).
 
-The objective of this PRAC was to complete a Web Scraping in Python of the website *"[Casa del Libro](https://www.https://www.casadellibro.com/)"*. From this website a list of all the books on the subject of "Literature" has been extended and a data set with the extended data has been generated.
+The objective of this PRAC was to complete a Web Scraping in Python of the website *"[Casa del Libro](https://www.casadellibro.com/)"*. From this website a list of all the books on the subject of "Literature" has been extended and a data set with the extended data has been generated.
 
 ---
 
