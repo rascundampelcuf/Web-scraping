@@ -39,5 +39,5 @@ $ python main.py
 
 | **Gabriel Izquierdo** | **Mireia Olivella** |
 | :---: | :---: |
-| [![Gabriel](https://avatars.githubusercontent.com/rascundampelcuf?s=200)](http://github.com/rascundampelcuf) | [![Mireia](https://avatars.githubusercontent.com/MIREIAOLIVELLA?s=200)](http://github.com/MIREIAOLIVELLA) |
+| [![Gabriel](https://avatars.githubusercontent.com/rascundampelcuf?s=420)](http://github.com/rascundampelcuf) | [![Mireia](https://avatars.githubusercontent.com/MIREIAOLIVELLA?s=200)](http://github.com/MIREIAOLIVELLA) |
 | <a href="http://github.com/rascundampelcuf" target="_blank">`github.com/rascundampelcuf`</a> | <a href="http://github.com/MIREIAOLIVELLA" target="_blank">`github.com/MIREIAOLIVELLA`</a> |
