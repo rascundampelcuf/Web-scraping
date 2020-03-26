@@ -10,6 +10,8 @@ class Scraper():
     def __init__(self):
         self.url = 'https://www.casadellibro.com/libros/literatura/121000000'
         self.books = []
+        self.csvwriter = csv.writer(open("../data/data.csv", "w", newline='\n', encoding="utf-8"), delimiter=';')
+        self.csvwriter.writerow(['TITLE', 'AUTHOR', 'RATE', 'BOOKTYPE', 'PRICE', 'AVAILABILITY'])
           
     def __download_html(self, url):
         # Get data from url
@@ -22,7 +24,7 @@ class Scraper():
         # Get title from 'title' tag
         title = text.find('a', 'title').string.strip()
         book.set_title(title)
-    
+        
     def __get_authors_from_book(self, book, text):
         authors = text.findAll('div', 'authors')
         
@@ -55,6 +57,12 @@ class Scraper():
         #     print(book)
         # print(page.prettify())
             
+    def data2csv2(self):        
+        # Dump all the data with CSV format        
+        for book in self.books:
+            self.csvwriter.writerow(book.get_list())
+        self.books.clear()
+        
     def data2csv(self, filename):
         # # Overwrite to the specified file.
         # # Create it if it does not exist.
@@ -69,4 +77,4 @@ class Scraper():
 output_file = "data.csv"
 scraper = Scraper()
 scraper.scrape()
-scraper.data2csv(output_file)
+# scraper.data2csv(output_file)
