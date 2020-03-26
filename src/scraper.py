@@ -8,14 +8,17 @@ from book import Book
 class Scraper():
       
     def __init__(self):
-        self.url = 'https://www.casadellibro.com/libros/literatura/121000000'
+        self.url = 'https://www.casadellibro.com/libros/literatura/121000000/p'
         self.books = []
+        self.status_code = 200
         self.csvwriter = csv.writer(open("../data/data.csv", "w", newline='\n', encoding="utf-8"), delimiter=';')
         self.csvwriter.writerow(['TITLE', 'AUTHOR', 'RATE', 'BOOKTYPE', 'PRICE', 'AVAILABILITY'])
           
     def __download_html(self, url):
         # Get data from url
         html = requests.get(url)
+        self.status_code = html.status_code
+        
         # Convert HTML content to BeautifulSoup object
         soup = BeautifulSoup(html.content, 'html.parser')
         return soup
@@ -50,9 +53,16 @@ class Scraper():
             self.books.append(book)
     
     def scrape(self):
-        page = self.__download_html(self.url)
-        # titles = self.__get_titles(page)
-        self.__get_books(page)
+        print('Web scraping of books by "Casa del Libro"...')
+        page_num = 1
+        while (self.status_code == 200):
+            print('Scraping page ' + str(page_num))
+            page = self.__download_html(self.url + str(page_num))
+            self.__get_books(page)
+            if page_num % 10 == 0:
+                self.data2csv2()
+            page_num += 1
+        
         # for book in self.books:
         #     print(book)
         # print(page.prettify())
@@ -64,11 +74,11 @@ class Scraper():
         self.books.clear()
         
     def data2csv(self, filename):
-        # # Overwrite to the specified file.
-        # # Create it if it does not exist.
-        csvwriter = csv.writer(open("../data/" + filename, "w", newline='\n'))
+        # Overwrite to the specified file.
+        # Create it if it does not exist.
+        csvwriter = csv.writer(open("../data/" + filename, "w", newline='\n', encoding="utf-8"))
         
-        # # Dump all the data with CSV format
+        # Dump all the data with CSV format
         csvwriter.writerow(['Title;Author;Rate;BookType;Price;Availability;'])
         for book in self.books:
             csvwriter.writerow([book.get_csv()])
