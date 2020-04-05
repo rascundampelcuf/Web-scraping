@@ -41,6 +41,10 @@ The objective of this PRAC was to complete a Web Scraping in Python of the websi
 ```shell
 $ pip install requests
 ```
+> `csv`
+```shell
+$ pip install csv
+```
 > `bs4`
 ```shell
 $ pip install bs4
