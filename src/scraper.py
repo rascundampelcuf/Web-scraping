@@ -60,7 +60,7 @@ class Scraper():
             page = self.__download_html(self.url + str(page_num))
             self.__get_books(page)
             if page_num % 100 == 0:
-                self.data2csv2()
+                self.data2csv()
             page_num += 1
         
         # for book in self.books:
@@ -72,19 +72,6 @@ class Scraper():
         for book in self.books:
             self.csvwriter.writerow(book.get_list())
         self.books.clear()
-        
-    def data2csv(self, filename):
-        # Overwrite to the specified file.
-        # Create it if it does not exist.
-        csvwriter = csv.writer(open("../data/" + filename, "w", newline='\n', encoding="utf-8"))
-        
-        # Dump all the data with CSV format
-        csvwriter.writerow(['Title;Author;Rate;BookType;Price;Availability;'])
-        for book in self.books:
-            csvwriter.writerow([book.get_csv()])
             
-            
-output_file = "data.csv"
 scraper = Scraper()
 scraper.scrape()
-# scraper.data2csv(output_file)
