@@ -29,7 +29,12 @@ class Scraper():
         book.title = title
         
     def __get_authors_from_book(self, book, text):
-        authors = text.findAll('div', 'authors')
+        author = text.find('div', 'author')
+        try:
+            author = author.string.strip()
+        except Exception:
+            author = 'Not available'
+        book.author = author
         
     def __get_rating_from_book(self, book, text):
         # Get rating from 'rating' tag
