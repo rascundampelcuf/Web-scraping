@@ -59,7 +59,7 @@ class Scraper():
             print('Scraping page ' + str(page_num))
             page = self.__download_html(self.url + str(page_num))
             self.__get_books(page)
-            if page_num % 10 == 0:
+            if page_num % 100 == 0:
                 self.data2csv2()
             page_num += 1
         
