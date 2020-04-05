@@ -26,7 +26,7 @@ class Scraper():
     def __get_title_from_book(self, book, text):
         # Get title from 'title' tag
         title = text.find('a', 'title').string.strip()
-        book.set_title(title)
+        book.title = title
         
     def __get_authors_from_book(self, book, text):
         authors = text.findAll('div', 'authors')
@@ -40,7 +40,7 @@ class Scraper():
             rating = rating.string.strip()
         except Exception:
             rating = 'None'
-        book.set_rate(rating)
+        book.rate = rating
     
     def __get_books(self, page):
         # Get books code from 'product__info' tag
@@ -62,12 +62,13 @@ class Scraper():
             if page_num % 100 == 0:
                 self.data2csv()
             page_num += 1
+        self.data2csv()
         
         # for book in self.books:
         #     print(book)
         # print(page.prettify())
             
-    def data2csv2(self):        
+    def data2csv(self):        
         # Dump all the data with CSV format        
         for book in self.books:
             self.csvwriter.writerow(book.get_list())
