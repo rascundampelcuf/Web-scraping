@@ -14,7 +14,6 @@ The objective of this PRAC was to complete a Web Scraping in Python of the websi
 
 ```bash
 ────Web-scraping
-    │   README.md
     │
     ├───data
     │       data.csv
