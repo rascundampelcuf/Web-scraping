@@ -5,12 +5,12 @@ class Book(object):
         self._title = ''    
         self._author = ''    
         self._rate = ''        
-        self._bookType = ''
-        self._price = ''
+        self._bookType = '--'
+        self._price = '--'
         self._availability = ''
     
     def __str__(self):
-        return 'Book({}, {}, {}, {})'.format(self._title, self._author, self._rate, self._price)
+        return 'Book({}, {}, {}, {}, {}, {})'.format(self._title, self._author, self._rate, self._availability, self._bookType, self._price)
     
     def __repr__(self):
         return str(self)
@@ -64,4 +64,4 @@ class Book(object):
         self._availability = availability
         
     def get_list(self):
-        return [self._title, self._author, self._rate, self._bookType, self._price, self._availability]
+        return [self._title, self._author, self._rate, self._availability, self._bookType, self._price]
