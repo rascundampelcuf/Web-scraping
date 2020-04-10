@@ -83,7 +83,6 @@ class Scraper():
                 self.__get_price_from_book(book, div)
                 
             self.books.append(book)
-            print(book)
     
     def scrape(self):
         print('Web scraping of books by "Casa del Libro"...')
@@ -107,22 +106,6 @@ class Scraper():
         for book in self.books:
             self.csvwriter.writerow(book.get_list())
         self.books.clear()
-        
-    def test(self):      
-        driver = webdriver.Chrome()
-        driver.get(self.url + self.path)
-        WebDriverWait(driver, 0)
-        books = driver.find_elements_by_class_name('type-price')
-        for book in books:
-            print("-{}-".format(book.text.strip()))
-
-        driver.quit()
-        # try:
-        #     element = WebDriverWait(driver, 60)#.until(EC.presence_of_element_located((By.ID, "myDynamicElement")))
-        #     driver.find_element_by_class_name('product__info')
-        # finally:
-        #     driver.quit()
             
 scraper = Scraper()
 scraper.scrape()
-# scraper.test()
