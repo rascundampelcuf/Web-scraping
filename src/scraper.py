@@ -61,10 +61,11 @@ class Scraper():
         book.bookType = bookType
         
     def __get_price_from_book(self, book, text):
-        # Get price from tag with class 'final-price'
-        price = text.findAll('div', 'final-price')
-        # book.price = price      
-        # print(price)
+        # Get price from tag with class 'type-price'
+        price = text.find_elements_by_css_selector('div.type.active .type-price')
+        # First element in list is the original price, and we want to get the price with discount
+        price = price[1].text[:-1].strip().replace(',', '.')
+        book.price = float(price)
     
     def __get_books(self):
         # Get books code from 'product__info' tag            
@@ -76,7 +77,11 @@ class Scraper():
             self.__get_authors_from_book(book, div)
             self.__get_rating_from_book(book, div)
             self.__get_book_availability(book, div)
-            self.__get_price_from_book(book, div)
+            
+            if book._availability:
+                self.__get_type_from_book(book, div)
+                self.__get_price_from_book(book, div)
+                
             self.books.append(book)
             print(book)
     
