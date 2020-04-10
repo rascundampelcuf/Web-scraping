@@ -7,17 +7,18 @@ from selenium.webdriver.support.ui import WebDriverWait
 class Scraper():
       
     def __init__(self):
-        self.url = 'https://www.casadellibro.com/libros/literatura/121000000/p'
+        # self.url = 'https://www.casadellibro.com/libros/literatura/121000000/p'
+        self.url = 'https://www.casadellibro.com/libros/literatura/narrativa-en-bolsillo/ciencia-ficcion-en-bolsillo/121005001/p'
         self.books = []
         self.status_code = 200
         self.csvwriter = csv.writer(open("../data/data.csv", "w", newline='\n', encoding="utf-8"), delimiter=';')
-        self.csvwriter.writerow(['TITLE', 'AUTHOR', 'RATE', 'BOOKTYPE', 'PRICE', 'AVAILABILITY'])
+        self.csvwriter.writerow(['TITLE', 'AUTHOR', 'RATE', 'AVAILABILITY', 'BOOKTYPE', 'PRICE'])
         self.driver = webdriver.Chrome()
           
     def __set_driver(self, url):
         # Get data from url
         self.driver.get(url)
-        WebDriverWait(self.driver, 0)        
+        WebDriverWait(self.driver, 15)        
         if "404" in self.driver.title:
             self.status_code = 404
     
