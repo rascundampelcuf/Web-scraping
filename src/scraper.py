@@ -88,15 +88,15 @@ class Scraper():
     def scrape(self):
         print('Web scraping of books by "Casa del Libro"...')
         page_num = 1
-        # while (self.status_code == 200):
-        print('Scraping page ' + str(page_num))
-        self.__set_driver(self.url + self.path + str(page_num))
-        self.__get_books()
+        while (self.status_code == 200):
+            print('Scraping page ' + str(page_num))
+            self.__set_driver(self.url + str(page_num))
+            self.__get_books()
             # if page_num % 100 == 0:
                 # self.data2csv()
-            # page_num += 1
+            page_num += 1
         self.__quit_driver()
-        # self.data2csv()
+        self.data2csv()
         
         # for book in self.books:
         #     print(book)
