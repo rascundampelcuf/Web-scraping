@@ -1,9 +1,8 @@
 
-import requests
 import csv
-from bs4 import BeautifulSoup
 from book import Book
-
+from selenium import webdriver
+from selenium.webdriver.support.ui import WebDriverWait
 
 class Scraper():
       
@@ -78,6 +77,22 @@ class Scraper():
         for book in self.books:
             self.csvwriter.writerow(book.get_list())
         self.books.clear()
+        
+    def test(self):      
+        driver = webdriver.Chrome()
+        driver.get(self.url + self.path)
+        WebDriverWait(driver, 0)
+        books = driver.find_elements_by_class_name('type-price')
+        for book in books:
+            print("-{}-".format(book.text.strip()))
+
+        driver.quit()
+        # try:
+        #     element = WebDriverWait(driver, 60)#.until(EC.presence_of_element_located((By.ID, "myDynamicElement")))
+        #     driver.find_element_by_class_name('product__info')
+        # finally:
+        #     driver.quit()
             
 scraper = Scraper()
 scraper.scrape()
+# scraper.test()
