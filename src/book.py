@@ -10,7 +10,7 @@ class Book(object):
         self._availability = ''
     
     def __str__(self):
-        return 'Book({}, {}, {})'.format(self._title, self._author, self._rate)
+        return 'Book({}, {}, {}, {})'.format(self._title, self._author, self._rate, self._price)
     
     def __repr__(self):
         return str(self)
