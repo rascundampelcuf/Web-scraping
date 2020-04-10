@@ -48,8 +48,12 @@ class Scraper():
         book.rate = rating
         
     def __get_book_availability(self, book, text):
-        # Get availability from existance of tag with class 'type-active'
-        pass
+        # Get availability from existance of tag with class 'type active'
+        try:
+            availability = bool(text.find_element_by_css_selector('div.type.active'))
+        except Exception:
+            availability = False        
+        book._availability = availability
         
     def __get_price_from_book(self, book, text):
         # Get price from tag with class 'final-price'
