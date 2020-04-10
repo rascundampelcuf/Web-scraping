@@ -12,61 +12,76 @@ class Scraper():
         self.status_code = 200
         self.csvwriter = csv.writer(open("../data/data.csv", "w", newline='\n', encoding="utf-8"), delimiter=';')
         self.csvwriter.writerow(['TITLE', 'AUTHOR', 'RATE', 'BOOKTYPE', 'PRICE', 'AVAILABILITY'])
+        self.driver = webdriver.Chrome()
           
-    def __download_html(self, url):
+    def __set_driver(self, url):
         # Get data from url
-        html = requests.get(url)
-        self.status_code = html.status_code
-        
-        # Convert HTML content to BeautifulSoup object
-        soup = BeautifulSoup(html.content, 'html.parser')
-        return soup
+        self.driver.get(url)
+        WebDriverWait(self.driver, 0)        
+        if "404" in self.driver.title:
+            self.status_code = 404
+    
+    def __quit_driver(self):
+        self.driver.quit()
     
     def __get_title_from_book(self, book, text):
-        # Get title from 'title' tag
-        title = text.find('a', 'title').string.strip()
+        # Get title from tag with class 'title'
+        title = text.find_element_by_class_name('title').text.strip()
         book.title = title
         
     def __get_authors_from_book(self, book, text):
-        author = text.find('div', 'author')
+        # Get author from tag with class 'author'
+        author = ''
         try:
-            author = author.string.strip()
+            author = text.find_element_by_class_name('author').text.strip()
         except Exception:
             author = 'Not available'
         book.author = author
         
     def __get_rating_from_book(self, book, text):
-        # Get rating from 'rating' tag
-        rating = text.find('div', 'rating')
-        # Remove nested 'svg' tag to get the value
-        [s.extract() for s in rating('svg')]
-        try:
-            rating = rating.string.strip()
-        except Exception:
-            rating = 'None'
+        # Get rating from tag with 'rating' class
+        rating = text.find_element_by_class_name('rating').text.strip()
+        
+        # If there is not rating -> rating = 'None'
+        rating = rating if rating != '' else 'None'
         book.rate = rating
+        
+    def __get_book_availability(self, book, text):
+        # Get availability from existance of tag with class 'type-active'
+        pass
+        
+    def __get_price_from_book(self, book, text):
+        # Get price from tag with class 'final-price'
+        price = text.findAll('div', 'final-price')
+        # book.price = price      
+        # print(price)
     
-    def __get_books(self, page):
-        # Get books code from 'product__info' tag
-        divs = page.findAll('div', 'product__info')
+    def __get_books(self):
+        # Get books code from 'product__info' tag            
+        divs = self.driver.find_elements_by_class_name('product__info')        
+        
         for div in divs:            
             book = Book()
             self.__get_title_from_book(book, div)
             self.__get_authors_from_book(book, div)
             self.__get_rating_from_book(book, div)
+            self.__get_book_availability(book, div)
+            self.__get_price_from_book(book, div)
             self.books.append(book)
+            print(book)
     
     def scrape(self):
         print('Web scraping of books by "Casa del Libro"...')
         page_num = 1
-        while (self.status_code == 200):
-            print('Scraping page ' + str(page_num))
-            page = self.__download_html(self.url + str(page_num))
-            self.__get_books(page)
-            if page_num % 100 == 0:
-                self.data2csv()
-            page_num += 1
-        self.data2csv()
+        # while (self.status_code == 200):
+        print('Scraping page ' + str(page_num))
+        self.__set_driver(self.url + self.path + str(page_num))
+        self.__get_books()
+            # if page_num % 100 == 0:
+                # self.data2csv()
+            # page_num += 1
+        self.__quit_driver()
+        # self.data2csv()
         
         # for book in self.books:
         #     print(book)
