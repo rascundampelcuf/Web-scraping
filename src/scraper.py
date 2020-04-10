@@ -55,6 +55,11 @@ class Scraper():
             availability = False        
         book._availability = availability
         
+    def __get_type_from_book(self, book, text):
+        # Get type from tag with class 'type-name'
+        bookType = text.find_element_by_css_selector('div.type.active .type-name').text.strip()
+        book.bookType = bookType
+        
     def __get_price_from_book(self, book, text):
         # Get price from tag with class 'final-price'
         price = text.findAll('div', 'final-price')
