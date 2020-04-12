@@ -1,5 +1,6 @@
 
 import csv
+import time
 from book import Book
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
