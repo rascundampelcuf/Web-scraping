@@ -3,6 +3,7 @@ import csv
 from book import Book
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.common.exceptions import TimeoutException
 
 class Scraper():
       
@@ -18,7 +19,11 @@ class Scraper():
     def __set_driver(self, url):
         # Get data from url
         self.driver.get(url)
-        WebDriverWait(self.driver, 15)        
+        try:
+            time.sleep(20)
+            WebDriverWait(self.driver, 3)
+        except TimeoutException:
+            pass
         if "404" in self.driver.title:
             self.status_code = 404
     
