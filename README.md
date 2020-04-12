@@ -1,5 +1,6 @@
 
-[![DOI](https://zenodo.org/badge/247106677.svg)](https://zenodo.org/badge/latestdoi/247106677)
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3749018.svg)](https://doi.org/10.5281/zenodo.3749018)
 
 
 <img src="https://www.incimages.com/uploaded_files/image/970x450/rey-seven-nm-mZ4Cs2I-unsplash_397351.jpg">
