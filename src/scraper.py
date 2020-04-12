@@ -1,4 +1,3 @@
-
 import csv
 import time
 from book import Book
@@ -9,7 +8,6 @@ from selenium.common.exceptions import TimeoutException
 class Scraper():
       
     def __init__(self):
-        # self.url = 'https://www.casadellibro.com/libros/literatura/121000000/p'
         self.url = 'https://www.casadellibro.com/libros/literatura/narrativa-en-bolsillo/ciencia-ficcion-en-bolsillo/121005001/p'
         self.books = []
         self.status_code = 200
@@ -126,21 +124,7 @@ class Scraper():
             print('Scraping page ' + str(page_num))
             self.__set_driver(self.url + str(page_num))
             self.__get_books()
-            # if page_num % 100 == 0:
-                # self.data2csv()
+            self.__data2csv()          
             page_num += 1
         self.__quit_driver()
-        self.data2csv()
         
-        # for book in self.books:
-        #     print(book)
-        # print(page.prettify())
-            
-    def data2csv(self):        
-        # Dump all the data with CSV format        
-        for book in self.books:
-            self.csvwriter.writerow(book.get_list())
-        self.books.clear()
-            
-scraper = Scraper()
-scraper.scrape()
