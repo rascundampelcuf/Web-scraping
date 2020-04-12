@@ -64,16 +64,18 @@ class Scraper():
         return availability
         
     def __get_type_from_book(self, book, text):
+    def __get_booktypes(self, text):
+        types = text.find_elements_by_css_selector('div.types')
         # Get type from tag with class 'type-name'
-        bookType = text.find_element_by_css_selector('div.type.active .type-name').text.strip()
-        book.bookType = bookType
+        btypes = types[0].find_elements_by_class_name('type-name')
+        btypes = [t.text.strip() for t in btypes if t.text]
         
-    def __get_price_from_book(self, book, text):
         # Get price from tag with class 'type-price'
-        price = text.find_elements_by_css_selector('div.type.active .type-price')
-        # First element in list is the original price, and we want to get the price with discount
-        price = price[1].text[:-1].strip().replace(',', '.')
-        book.price = float(price)
+        bprices = types[0].find_elements_by_class_name('type-price')
+        bprices = [p.text.strip() for p in bprices if p.text]
+        
+        types = list(zip(btypes, bprices))
+        return types
     
     def __get_books(self):
         # Get books code from 'product__info' tag            
