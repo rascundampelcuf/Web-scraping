@@ -80,6 +80,15 @@ El codi per poder obtenir el dataset es pot trobar trobar accedint al següent e
 El dataset pot ser consultat a la següent adreça de Zenodo: https://zenodo.org/record/3749018#.XpMd8pntZPY
 
 ## Recursos
+
 1. Subirats Maté, L., Calvo González, M. (2019). Web scraping. Oberta UOC Publishing, SL.
 
 2. Selenium-python.readthedocs.io. 2020. Selenium With Python — Selenium Python Bindings 2 Documentation. [online] Available at: <https://selenium-python.readthedocs.io> [Accessed 9 April 2020].
+
+## Taula de contribucions
+
+|       Contribucions       |                Signa               |
+|:-------------------------:|:----------------------------------:|
+|       Recerca prèvia      | Gabriel Izquierdo, Mireia Olivella |
+| Redacció de les respostes | Gabriel Izquierdo, Mireia Olivella |
+|  Desenvolupament del codi | Gabriel Izquierdo, Mireia Olivella |
