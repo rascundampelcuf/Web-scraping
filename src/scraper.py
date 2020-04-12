@@ -32,12 +32,13 @@ class Scraper():
         
     def __get_authors_from_book(self, book, text):
         # Get author from tag with class 'author'
-        author = ''
+        authors = 'Not available'
         try:
-            author = text.find_element_by_class_name('author').text.strip()
+            authors = text.find_elements_by_class_name('author')
+            authors = [author.text.strip() for author in authors]
         except Exception:
-            author = 'Not available'
-        book.author = author
+            pass
+        book.authors = authors
         
     def __get_rating_from_book(self, book, text):
         # Get rating from tag with 'rating' class

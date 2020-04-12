@@ -3,14 +3,14 @@ class Book(object):
     
     def __init__(self):
         self._title = ''    
-        self._author = ''    
+        self._authors = ''    
         self._rate = ''        
         self._bookType = '--'
         self._price = '--'
         self._availability = ''
     
     def __str__(self):
-        return 'Book({}, {}, {}, {}, {}, {})'.format(self._title, self._author, self._rate, self._availability, self._bookType, self._price)
+        return 'Book({}, {}, {}, {}, {}, {})'.format(self._title, self._authors, self._rate, self._availability, self._bookType, self._price)
     
     def __repr__(self):
         return str(self)
@@ -24,12 +24,12 @@ class Book(object):
         self._title = title
         
     @property
-    def author(self):
+    def authors(self):
         return self._author
     
-    @author.setter
-    def author(self, author):
-        self._author = author
+    @authors.setter
+    def authors(self, authors):
+        self._authors = authors
         
     @property
     def rate(self):
@@ -64,4 +64,4 @@ class Book(object):
         self._availability = availability
         
     def get_list(self):
-        return [self._title, self._author, self._rate, self._availability, self._bookType, self._price]
+        return [self._title, self._authors, self._rate, self._availability, self._bookType, self._price]
