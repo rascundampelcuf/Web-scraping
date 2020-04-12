@@ -53,13 +53,14 @@ class Scraper():
         rating = rating if rating != '' else 'None'
         book.rate = rating
         
-    def __get_book_availability(self, book, text):
+    def __get_book_availability(self, text):
         # Get availability from existance of tag with class 'type active'
+        availability = False
         try:
-            availability = bool(text.find_element_by_css_selector('div.type.active'))
+            availability = bool(text.find_elements_by_class_name('type-name'))
         except Exception:
-            availability = False        
-        book._availability = availability
+            pass
+        return availability
         
     def __get_type_from_book(self, book, text):
         # Get type from tag with class 'type-name'
