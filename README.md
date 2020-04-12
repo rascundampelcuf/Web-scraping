@@ -21,12 +21,18 @@ The objective of this PRAC was to complete a Web Scraping in Python of the websi
     ├───data
     │       data.csv
     │
+    ├───pdf
+    │       respostes.Rmd
+    │       respostes.pdf
+    │
     └───src
             book.py
             main.py
             scraper.py
 ```
 - **data/data.csv**: Output dataset. It contains a list of books.
+- **pdf/respostes.Rmd**: Source file with the project answers.
+- **pdf/respostes.pdf**: Delivery file with the project answers.
 - **src/book.py**: It contains the implementation of Book class. It was created to easily manage the information of each book.
 - **src/main.py**: Input. It starts the scraping process.
 - **src/scraper.py**: It contains the implementation of Scraper class. Scraper class contains the necessary methods to generate the dataset with the data provided by *"Casa del Libro"*.
