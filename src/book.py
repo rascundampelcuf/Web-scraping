@@ -2,54 +2,66 @@
 class Book(object):
     
     def __init__(self):
-        self.title = ''    
-        self.author = ''    
-        self.rate = ''        
-        self.bookType = ''
-        self.price = ''
-        self.availability = ''
+        self._title = ''    
+        self._authors = ''    
+        self._rate = ''        
+        self._bookType = '--'
+        self._price = '--'
+        self._availability = ''
     
     def __str__(self):
-        return 'Book({}, {})'.format(self.title, self.rate)
+        return 'Book({}, {}, {}, {}, {}, {})'.format(self._title, self._authors, self._rate, self._availability, self._bookType, self._price)
     
     def __repr__(self):
         return str(self)
     
-    def get_title(self):
-        return self.title
+    @property
+    def title(self):
+        return self._title
     
-    def set_title(self, value):
-        self.title = value
+    @title.setter
+    def title(self, title):
+        self._title = title
         
-    def get_author(self):
-        return self.author
+    @property
+    def authors(self):
+        return self._author
     
-    def set_author(self, value):
-        self.author = value
+    @authors.setter
+    def authors(self, authors):
+        self._authors = authors
         
-    def get_rate(self):
-        return self.rate
+    @property
+    def rate(self):
+        return self._rate
         
-    def set_rate(self, value):
-        self.rate = value
+    @rate.setter
+    def rate(self, rate):
+        self._rate = rate
         
-    def get_bookType(self):
-        return self.bookType
+    @property
+    def bookType(self):
+        return self._bookType
         
-    def set_bookType(self, value):
-        self.bookType = value
-        
-    def get_price(self):
-        return self.price
+    @bookType.setter
+    def bookType(self, bookType):
+        self._bookType = bookType
     
-    def set_price(self, value):
-        self.price = value
-        
-    def get_availability(self):
-        return self.availability
+    @property
+    def price(self):
+        return self._price
     
-    def set_availability(self, value):
-        self.availability = value
+    @price.setter
+    def price(self, price):
+        self._price = price
         
-    def get_csv(self):
-        return '{};{};{};{};{};{};'.format(self.title, self.author, self.rate, self.bookType, self.price, self.availability)
+    @property
+    def availability(self):
+        return self._availability
+    
+    @availability.setter
+    def availability(self, availability):
+        self._availability = availability
+        
+    def get_list(self):
+        return [self._title, self._authors, self._rate, self._availability, self._bookType, self._price]

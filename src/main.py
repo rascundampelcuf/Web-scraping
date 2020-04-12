@@ -1,4 +1,5 @@
 
 from scraper import Scraper
 
-Scraper()
+scraper = Scraper()
+scraper.scrape()
