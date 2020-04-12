@@ -1,9 +1,7 @@
 
+<img src="https://www.incimages.com/uploaded_files/image/970x450/rey-seven-nm-mZ4Cs2I-unsplash_397351.jpg">
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3749018.svg)](https://doi.org/10.5281/zenodo.3749018)
-
-
-<img src="https://www.incimages.com/uploaded_files/image/970x450/rey-seven-nm-mZ4Cs2I-unsplash_397351.jpg">
 
 # Web-scraping
 > UOC - Typology and life cycle of data - PRAC1
