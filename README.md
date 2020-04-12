@@ -1,3 +1,7 @@
+
+[![DOI](https://zenodo.org/badge/247106677.svg)](https://zenodo.org/badge/latestdoi/247106677)
+
+
 <img src="https://www.incimages.com/uploaded_files/image/970x450/rey-seven-nm-mZ4Cs2I-unsplash_397351.jpg">
 
 # Web-scraping
