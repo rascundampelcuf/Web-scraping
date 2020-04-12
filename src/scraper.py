@@ -88,21 +88,36 @@ class Scraper():
         return types
     
     def __get_books(self):
-        # Get books code from 'product__info' tag            
-        divs = self.driver.find_elements_by_class_name('product__info')        
-        
-        for div in divs:            
-            book = Book()
-            self.__get_title_from_book(book, div)
-            self.__get_authors_from_book(book, div)
-            self.__get_rating_from_book(book, div)
-            self.__get_book_availability(book, div)
-            
-            if book._availability:
-                self.__get_type_from_book(book, div)
-                self.__get_price_from_book(book, div)
-                
-            self.books.append(book)
+        # Get books code from 'product__info' tag
+        divs = self.driver.find_elements_by_class_name('product__info')
+        for div in divs:
+            availability = self.__get_book_availability(div)
+            # If book is not available just save title, author and rating
+            if not availability:
+                book = Book()
+                self.__get_title_from_book(book, div)
+                self.__get_authors_from_book(book, div)
+                self.__get_rating_from_book(book, div)
+                self.__set_book_availability(book, availability)
+                self.books.append(book)                
+            else:
+                # If book is available save a book with the info for each type
+                types = self.__get_booktypes(div)
+                for _type, _price in types:
+                    book = Book()
+                    self.__get_title_from_book(book, div)
+                    self.__get_authors_from_book(book, div)
+                    self.__get_rating_from_book(book, div)
+                    self.__set_book_availability(book, availability)
+                    self.__set_type_for_book(book, _type)
+                    self.__set_price_for_book(book, _price)
+                    self.books.append(book)
+                    
+    def __data2csv(self):        
+        # Dump all the data with CSV format        
+        for book in self.books:
+            self.csvwriter.writerow(book.get_list())
+        self.books.clear()
     
     def scrape(self):
         print('Web scraping of books by "Casa del Libro"...')
